@@ -1,16 +1,16 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm navbar navbar-expand-lg navbar-dark bg-primary">
-  <a href="/" class="my-0 mr-md-auto navbar-brand">Dating App</a>
+  <a [routerLink]="['/home']" class="my-0 mr-md-auto navbar-brand">Dating App</a>
 
   <nav class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn()">
-      <li class="nav-item">
-          <a class="nav-link" href="#">Matchs</a>
+      <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/members']">Matchs</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#">Lists</a>
+      <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/lists']">Lists</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
+      <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/messages']">Messages</a>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a class="nav-link dropdown-toggle" dropdownToggle>

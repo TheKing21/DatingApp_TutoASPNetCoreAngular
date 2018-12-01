@@ -20,6 +20,8 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.user = data['user'];
+    }, error => {
+      this.alertify.error(error);
     });
 
     this.galleryOptions = [

@@ -1,0 +1,59 @@
+img.img-thumbnail {
+    height: 100px;
+    min-width: 100px;
+    margin-bottom: 5px;
+}
+
+.nv-file {
+    border: dotted 3px gray;
+    background: snow;
+}
+
+.nv-file-over {
+    border: dotted 3px black !important;
+    background: azure !important;
+}
+
+.fileUploadContainer {
+    min-height: 20rem;
+    background-color: snow;
+    border: dotted 3px gray;
+
+    -webkit-box-align: center!important;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    cursor: pointer;
+    color: #002DE1;
+    font-weight: bold;
+}
+
+.inputfile + label:hover {
+    cursor: pointer;
+    color: navy;
+    font-weight: bold;
+}
+
+.progressbarContainer {
+    width: 50%;
+    margin: 10px auto;
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 15px;
+    overflow: hidden;
+}
+
+.progressbar {
+    height: 15px;
+}

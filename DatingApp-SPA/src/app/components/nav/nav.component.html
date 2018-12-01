@@ -12,14 +12,21 @@
       <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/messages']">Messages</a>
       </li>
-      <li class="nav-item dropdown" dropdown>
-        <a class="nav-link dropdown-toggle" dropdownToggle>
-            Welcome {{authService.decodedToken.unique_name | titlecase}}
-        </a>
-        <div class="dropdown-menu mt-1" *dropdownMenu>
-          <a class="dropdown-item" [routerLink]="['/member/edit']"><i class="fa fa-user"></i> Edit Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+      <li class="nav-item">
+        <div>
+          <div class="d-inline-block ml-3 mr-1">
+            <img src="{{photoUrl}}" alt="">
+          </div>
+          <div class="d-inline-block dropdown" dropdown>
+            <a class="nav-link dropdown-toggle" dropdownToggle>
+                Welcome {{authService.decodedToken.unique_name | titlecase}}
+            </a>
+            <div class="dropdown-menu mt-1" *dropdownMenu>
+              <a class="dropdown-item" [routerLink]="['/member/edit']"><i class="fa fa-user"></i> Edit Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+            </div>
+          </div>
         </div>
       </li>
     </ul>

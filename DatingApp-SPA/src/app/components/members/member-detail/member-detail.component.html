@@ -46,8 +46,7 @@
             <p>{{user.interests}}</p>
           </tab>
           <tab heading="Photos">
-            <ngx-gallery *ngIf="galleryImages.length > 0"> [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-            <p *ngIf="galleryImages.length === 0">No other photos</p>
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </tab>
           <tab heading="Messages">
             <p>Messages will go here</p>

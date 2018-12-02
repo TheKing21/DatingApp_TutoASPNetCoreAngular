@@ -15,7 +15,7 @@
       <li class="nav-item">
         <div>
           <div class="d-inline-block ml-3 mr-1">
-            <img src="{{photoUrl}}" alt="">
+            <img src="{{photoUrl || '../../assets/user.png'}}" alt="">
           </div>
           <div class="d-inline-block dropdown" dropdown>
             <a class="nav-link dropdown-toggle" dropdownToggle>
@@ -37,6 +37,8 @@
           <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username" required [(ngModel)]="model.username">
           <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password" required [(ngModel)]="model.password">
           <button class="btn btn-outline-secondary text-light" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+          <!--<label>or</label>
+          <button class="btn btn-outline-secondary text-light" type="submit">Register</button>-->
         </form>
       </li>
     </ul>

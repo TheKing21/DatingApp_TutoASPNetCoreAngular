@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user.photoUrl}}" alt="{{user.knownAs}}">
+        <img class="card-img-top img-thumbnail" src="{{user.photoUrl || '../../../assets/user.png'}}" alt="{{user.knownAs}}">
         <div class="card-body">
           <div>
             <strong>Location:</strong>
@@ -37,16 +37,20 @@
         <tabset class="member-tabset">
           <tab heading="About {{user?.knownAs}}">
             <h4>Description</h4>
-            <p>{{user.introduction}}</p>
+            <p *ngIf="user.introduction" class="mb-2">{{user.introduction}}</p>
+            <p *ngIf="!user.introduction"><i><small>This user has not had time to complete his introduction yet.</small></i></p>
             <h4>Looking For</h4>
-            <p>{{user.lookingFor}}</p>
+            <p *ngIf="!user.lookingFor">{{user.lookingFor}}</p>
+            <p *ngIf="!user.lookingFor"><i><small>This user has not had time to complete his Looking for yet.</small></i></p>
           </tab>
           <tab heading="Interests">
             <h4>Interests</h4>
-            <p>{{user.interests}}</p>
+            <p *ngIf="user.interests">{{user.interests}}</p>
+            <p *ngIf="!user.interests"><i><small>This user has not had time to complete his interests for yet.</small></i></p>
           </tab>
           <tab heading="Photos">
-            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            <ngx-gallery *ngIf="galleryImages.length > 0" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            <p *ngIf="galleryImages.length === 0"><i><small>This user don't have other photos.</small></i></p>
           </tab>
           <tab heading="Messages">
             <p>Messages will go here</p>

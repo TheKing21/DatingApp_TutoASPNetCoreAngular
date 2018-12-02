@@ -1,22 +1,95 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Sign Up</h2>
   <hr>
 
-  <div class="form-group">
-    <input type="text" class="form-control" name="username" required placeholder="Username" [(ngModel)]="model.username">
+  <!-- Gender -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label">Gender</label>
+    <div class="col-9">
+      <label class="radio-inline">
+        <input class="mr-3" type="radio" value="M" formControlName="gender">Male
+      </label>
+      <label class="radio-inline ml-3">
+        <input class="mr-3" type="radio" value="F" formControlName="gender">Female
+      </label>
+    </div>
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" name="email" required placeholder="Email" [(ngModel)]="model.email">
+
+  <!-- Know As -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="knownAs">Known As</label>
+    <div class="col-9">
+      <input type="text" id="knownAs" class="form-control" placeholder="Known as" formControlName="knownAs" 
+             [ngClass]="{'is-invalid': registerForm.get('knownAs').errors && registerForm.get('knownAs').touched}">
+      <small class="invalid-feedback" *ngIf="registerForm.get('knownAs').touched && registerForm.get('knownAs').hasError('required')">Known as is required</small>
+    </div>
   </div>
-  <div class="form-group">
-    <input type="password" class="form-control" name="password" required placeholder="Password" [(ngModel)]="model.password">
+
+  <!-- Date of birth -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="dateOfBirth">Date of birth</label>
+    <div class="col-9">
+      <input type="text" id="dateOfBirth" class="form-control" placeholder="Date of birth" formControlName="dateOfBirth" bsDatepicker [bsConfig]="bsConfig"
+             [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors && registerForm.get('dateOfBirth').touched}" placement="right">
+      <small class="invalid-feedback" *ngIf="registerForm.get('dateOfBirth').touched && registerForm.get('dateOfBirth').hasError('required')">Date of birth is required</small>
+    </div>
   </div>
-  <div class="form-group">
-    <input type="password" class="form-control" name="confirmation" required placeholder="Confirm your password" [(ngModel)]="model.confirmation">
+
+  <!-- City -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="city">City</label>
+    <div class="col-9">
+      <input type="text" id="city" class="form-control" placeholder="City" formControlName="city"
+             [ngClass]="{'is-invalid': registerForm.get('city').errors && registerForm.get('city').touched}">
+      <small class="invalid-feedback" *ngIf="registerForm.get('city').touched && registerForm.get('city').hasError('required')">City is required</small>
+    </div>
+  </div>
+
+  <!-- Country -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="country">Country</label>
+    <div class="col-9">
+      <input type="text" id="country" class="form-control" placeholder="Country" formControlName="country"
+              [ngClass]="{'is-invalid': registerForm.get('country').errors && registerForm.get('country').touched}">
+      <small class="invalid-feedback" *ngIf="registerForm.get('country').touched && registerForm.get('country').hasError('required')">Country is required</small>
+    </div>
+  </div>
+
+  <!-- Username -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="username">Username</label>
+    <div class="col-9">
+      <input type="text" id="username" class="form-control" placeholder="Username" formControlName="username"
+              [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
+      <small class="invalid-feedback" *ngIf="registerForm.get('username').touched && registerForm.get('username').hasError('required')">Username is required</small>
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="password">Password</label>
+    <div class="col-9">
+      <input type="password" id="password" class="form-control" placeholder="Password" formControlName="password"
+              [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}">
+      <small class="invalid-feedback" *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')">Password is required</small>
+      <small class="invalid-feedback" *ngIf="(registerForm.get('password').hasError('minlength') || registerForm.get('password').hasError('maxlength'))
+                                            && registerForm.get('password').touched">Your password must be between 8 and 20 characters</small>
+    </div>
+  </div>
+
+  <!-- Confirm password -->
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="confirmPassword">Confirm Password</label>
+    <div class="col-9">
+      <input type="password" id="confirmPassword" class="form-control" placeholder="ConfirmPassword" formControlName="confirmPassword"
+              [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched}">
+      <small class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').hasError('required')">You must confirm the password</small>
+      <small class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')">Passwords must match</small>
+    </div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success mr-3" type="submit">Register</button>
+    <button class="btn btn-success mr-3" type="submit" [disabled]="!registerForm.valid">Register</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
   </div>  
 </form>

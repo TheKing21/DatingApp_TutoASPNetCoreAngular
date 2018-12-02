@@ -26,12 +26,25 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
+            // We want to exclude the current user of the results
             int currentIdUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userFromRepo = await _repo.GetUser(currentIdUser);
 
-            var users = await _repo.GetUsers(currentIdUser);
+            userParams.UserId = currentIdUser;
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                // By default, we filter the user of the opposite gender.
+                userParams.Gender = (userFromRepo.Gender == "M" ? "F" : "M");
+            }
+
+            // We get the results
+            var users = await _repo.GetUsers(userParams);
             var usersReturn = _mapper.Map<IEnumerable<dtoUserForList>>(users);
+
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
             return Ok(usersReturn);
         }
 
